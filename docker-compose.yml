@@ -5,12 +5,12 @@ services:
     container_name: 'webpagetest_server'
     ports:
      - '4000:80'
+
   agent:
     build: ./docker/agent
     container_name: 'webpagetest_agent'
-    ports:
-      - '4001:80'
     network_mode: "host"
+    shm_size: '1gb'
     environment:
       - SERVER_URL=http://localhost:4000/work/
       - LOCATION=Test
